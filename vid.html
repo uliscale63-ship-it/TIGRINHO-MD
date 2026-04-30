@@ -1,0 +1,430 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TODO: Set the document title to the name of your application -->
+    <title>App do tigre Ao</title>
+    <meta name="description" content="Acessse o link">
+    <meta name="author" content="Lovable">
+    <link rel="stylesheet" href="indexa.css">
+    <style id="vturb-fullscreen-style-tag">
+        iframe.vturb-in-fullscreen {
+            object-fit: contain !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            z-index: 9999999 !important;
+            overflow: hidden !important
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;">
+            <ol tabindex="-1"
+                class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]">
+            </ol>
+        </div>
+        <section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text"
+            aria-atomic="false"></section>
+        <div class="min-h-screen flex flex-col items-center px-4 py-8" style="background: rgb(16, 19, 24);">
+            <h1 class="text-xl font-extrabold text-center mb-6 leading-tight"
+                style="background: linear-gradient(135deg, rgb(255, 217, 0), rgb(220, 166, 30), rgb(255, 128, 0)) text; -webkit-text-fill-color: transparent;">
+                ASSISTA O VÍDEO ABAIXO PARA VER COMO RECEBER O SEU DINHEIRO AGORA MESMO</h1>
+            <div class="w-full max-w-md rounded-xl overflow-hidden"
+                style="background: rgba(0, 0, 0, 0.8); min-height: 300px;">
+                <div id="ifr_69be7fe5423ef7939ca723d9_wrapper" style="margin: 0px auto; width: 100%; max-width: 100%;">
+
+
+
+                    <div class="controller-inner controller-inner__center">
+                        <!--?lit$661117982$--><vturb-bigplay><!----></vturb-bigplay>
+                        <vturb-bezel><!---->
+                            <div class="bezel no-pointer">
+                                <span class="bezel__icon" role="status" aria-label="Bezel"><!--?lit$661117982$--></span>
+                                <span class="bezel__loading  bezel__loading--hidden "><!--?lit$661117982$--><svg
+                                        class="lds-eclipse" height="100%" preserveAspectRatio="xMidYMid"
+                                        viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M68.095 59.578A20 20 0 0031.14 44.27a22 20-67.5 0136.955 15.308"
+                                            fill="#fff">
+                                            <animateTransform attributeName="transform" begin="0s" calcMode="linear"
+                                                dur="0.8s" keyTimes="0;1" repeatCount="indefinite" type="rotate"
+                                                values="0 50 51;360 50 51">
+                                            </animateTransform>
+                                        </path>
+                                    </svg></span>
+                            </div>
+                        </vturb-bezel>
+                    </div>
+
+                    <vturb-controls><!---->
+                        <div class="controls__inner">
+                            <div class="controls__inner--left">
+                                <!--?lit$661117982$--><span>&nbsp;</span>
+                            </div>
+                            <div class="controls__inner--center">
+                                <span>&nbsp;</span>
+                            </div>
+                            <div class="controls__inner--right">
+                                <!--?lit$661117982$--><span>&nbsp;</span>
+                            </div>
+                        </div>
+
+                        <div class=" controls bottom-controls-visible pointer ">
+                            <div class="controls__first">
+                                <div class="controls__first--left">
+                                    <!--?lit$661117982$--><!----><vturb-smallplay><!----><button class="smallplay"
+                                            aria-label="Reproduzir/Pausar" tabindex="-1" role="button">
+                                            <!--?lit$661117982$--><svg xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24">
+                                                <g>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M5 21.7232L22.0156 12L5 2.27685L5 21.7232Z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </button> </vturb-smallplay><!---->
+                                </div>
+
+                                <div class="controls__first--right">
+                                    <!--?lit$661117982$-->
+                                    <!--?lit$661117982$-->
+                                </div>
+                            </div>
+                        </div>
+                    </vturb-controls>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÃO PREMIUM -->
+    <div id="cta-container" style="display: none; text-align: center; margin-top: 20px;">
+        <a href="checkout.html" target="_blank" class="cta-btn">
+            💰 Pagar Taxa Anti-Robô
+        </a>
+    </div>
+
+
+
+
+    <!-- CONTADOR ONLINE -->
+    <div id="online-box">👥 <span id="online-count">127</span> pessoas online agora</div>
+
+    <!-- NOTIFICAÇÃO -->
+    <div id="notif-wpp" class="notif-wpp">
+        <div class="emoji" style="font-size: 18px;">✅</div>
+        <div class="notif-texto">
+            <strong id="notif-nome"></strong>
+            <span id="notif-msg"></span>
+        </div>
+    </div>
+
+
+
+    <style>
+        /* BOTÃO PREMIUM */
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00);
+            box-shadow: 0 0 20px rgba(255, 165, 0, 0.6);
+            transition: all 0.3s ease;
+            animation: pulseGlow 2s infinite;
+        }
+
+        /* HOVER */
+        .cta-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+        }
+
+        /* ANIMAÇÃO GLOW */
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+            }
+
+            100% {
+                box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+            }
+        }
+
+
+
+        .notif-wpp {
+            position: fixed;
+            top: 0;
+            /* inicia do topo */
+            top: 6rem;
+            size: 30px;
+            right: 1px;
+            background: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 3px;
+            /* padding reduzido */
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(12, 176, 67, 0.6);
+            width: 250px;
+            height: 50px;
+            display: none;
+            z-index: 9999;
+
+            /* começa escondido acima */
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        .notif-show {
+            animation: descer 0.5s ease forwards;
+        }
+
+        .notif-hide {
+            animation: subir 0.5s ease forwards;
+        }
+
+        @keyframes descer {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(10rem);
+                /* desce até 10rem do topo */
+                opacity: 1;
+            }
+        }
+
+        @keyframes subir {
+            from {
+                transform: translateY(10rem);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+        }
+
+
+        .notif-show {
+            animation: descer 0.5s ease forwards;
+        }
+
+        @keyframes descer {
+            from {
+                transform: translateY(-80px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .notif-hide {
+            animation: subir 0.5s ease forwards;
+        }
+
+        @keyframes subir {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-80px);
+                opacity: 0;
+            }
+        }
+
+        .emoji {
+            font-size: 10px;
+
+        }
+
+
+        .notif-texto {
+            display: flex;
+            flex-direction: column;
+            font-size: 10px;
+        }
+
+        .notif-texto strong {
+            font-size: 14px;
+            color: #25D366;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+
+        /* HOVER */
+        .cta-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+        }
+
+        /* ANIMAÇÃO GLOW */
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+            }
+
+            100% {
+                box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+            }
+        }
+
+
+
+
+
+
+
+        /* EMOJI PISCANDO */
+        .emoji {
+            font-size: 28px;
+            animation: piscar 1s infinite;
+        }
+
+        @keyframes piscar {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* CONTADOR ONLINE */
+        #online-box {
+            position: fixed;
+            top: 1px;
+            right: 10px;
+            background: #111;
+            color: #00ff00;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            z-index: 9999;
+        }
+    </style>
+
+    <script>
+        // TEMPO: 6min e 27s = 387 segundos
+        setTimeout(function () {
+            document.getElementById("cta-container").style.display = "block";
+        }, 387000);
+    </script>
+
+    <script>
+        const pessoas = [
+            { nome: "Carlos" },
+            { nome: "Ana" },
+            { nome: "Domingos" },
+            { nome: "Edna" },
+            { nome: "Manuel" },
+            { nome: "Fátima" }
+        ];
+
+        const provincias = [
+            "Luanda", "Benguela", "Huambo", "Huíla",
+            "Huambo", "Malanje"
+        ];
+
+        // VALORES FIXOS NA ORDEM
+        const valores = [100000, 87000, 67000, 150000, 49000, 32000, 89000];
+
+        let indexValor = 0;
+
+        function formatarKz(valor) {
+            return valor.toLocaleString('pt-PT') + " Kz";
+        }
+
+        function mostrarNotif() {
+            const pessoa = pessoas[Math.floor(Math.random() * pessoas.length)];
+            const provincia = provincias[Math.floor(Math.random() * provincias.length)];
+
+            const valor = valores[indexValor];
+            indexValor = (indexValor + 1) % valores.length;
+
+            document.getElementById("notif-nome").innerText = pessoa.nome;
+            document.getElementById("notif-msg").innerText =
+                `da província de ${provincia} acabou de levantar ${formatarKz(valor)}`;
+
+            const box = document.getElementById("notif-wpp");
+
+            box.style.display = "flex";
+            box.classList.remove("notif-hide");
+            box.classList.add("notif-show");
+
+            setTimeout(() => {
+                box.classList.remove("notif-show");
+                box.classList.add("notif-hide");
+
+                setTimeout(() => {
+                    box.style.display = "none";
+                }, 500);
+            }, 4000);
+        }
+        // CONTADOR ONLINE DINÂMICO
+        function atualizarOnline() {
+            const numero = Math.floor(Math.random() * (320 - 120)) + 120;
+            document.getElementById("online-count").innerText = numero;
+        }
+
+        setInterval(atualizarOnline, 3000);
+
+        // primeira notificação
+        setTimeout(mostrarNotif, 5000);
+
+        // repetir notificações
+        setInterval(mostrarNotif, 8000);
+    </script>
+
+
+</body>
+
+</html>

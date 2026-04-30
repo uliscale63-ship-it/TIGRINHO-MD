@@ -1,0 +1,599 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App do tigre Ao</title>
+
+    <meta name="author" content="Monopolho">
+    <link rel="stylesheet" href="indexa.css">
+    <meta name="twitter:card" content="summary_large_image">
+
+
+
+    <style>
+        /* Fundo escuro */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 998;
+
+            .toast {
+                animation: pop 0.4s ease;
+            }
+
+            @keyframes pop {
+                0% {
+                    transform: translate(-50%, -60%) scale(0.7);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translate(-50%, -50%) scale(1);
+                    opacity: 1;
+                }
+            }
+        }
+
+        @keyframes tigerDance {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(5px, -5px);
+            }
+
+            50% {
+                transform: translate(0, 5px);
+            }
+
+            75% {
+                transform: translate(-5px, -5px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        .tiger-anim {
+            animation: tigerDance 1s infinite ease-in-out;
+        }
+
+        @keyframes scrollText {
+            0% {
+                transform: translateX(80%);
+            }
+
+            100% {
+                transform: translateX(-80%);
+            }
+        }
+
+        .marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scrollText 10s linear infinite;
+        }
+
+        .play-btn {
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px lime;
+        }
+
+        .play-btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;">
+            <ol tabindex="-1"
+                class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]">
+            </ol>
+        </div>
+        <section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text"
+            aria-atomic="false"></section>
+        <div class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0"><img src="temple-bg-xbdkwM8g.jpg" alt="" class="w-full h-full object-cover ">
+                <div class="absolute inset-0"
+                    style="background: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(139, 10, 10, 0.6) 50%, rgba(0, 0, 0, 0.85) 100%);">
+                </div>
+            </div>
+            <div class="relative z-10 w-full max-w-[380px] mx-auto px-6">
+                <div class="w-full" style="opacity: 1; transform: none;">
+                    <div class="flex justify-between items-center mb-2">
+                        <div class="px-3 py-1 rounded-lg text-xs font-bold"
+                            style="background: rgba(0, 0, 0, 0.85); border: 1px solid rgba(218, 165, 32, 0.4); color: rgb(220, 166, 30);">
+                            RODADAS<br><span class="px-3 py-1 rounded-lg text-xs font-bold"
+                                style="color: rgb(33, 196, 93);">0/10</span></div>
+                        <div class="text-center">
+                            <h1 class="text-lg font-extrabold tracking-wider"
+                                style="background: linear-gradient(rgb(230, 26, 26), rgb(173, 31, 31)) text; -webkit-text-fill-color: transparent;">
+                                FORTUNE TIGER</h1>
+                            <p class="text-[10px] font-semibold" style="color: rgb(220, 166, 30);">Olá,
+                            <p id="nomeUser" style="margin-top:10px; color: yellow; font-size: large;"></p>
+                            </p>
+                        </div>
+                        <div class="px-3 py-1 rounded-lg text-xs font-bold text-right"
+                            style="background: rgba(0, 0, 0, 0.85); border: 1px solid rgba(218, 165, 32, 0.4); color: rgb(220, 166, 30);">
+
+
+                            SALDO<br>
+                            <span id="saldoTopo" class="px-3 py-1 rounded-lg text-xs font-bold"
+                                style="color: rgb(33, 196, 93);">0 Kz</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center -mb-6 relative z-20">
+                        <div class="w-20 h-20 rounded-full flex items-center justify-center overflow-hidden"
+                            style="background: linear-gradient(135deg, rgb(137, 207, 235), rgb(198, 225, 236)); border: 3px solid rgb(220, 166, 30); box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 20px, rgba(218, 165, 32, 0.3) 0px 0px 15px; transform: translateY(-0.640815px);">
+                            <img src="tiger-header-B_edPfGx.png" class="w-16 h-16 object-contain tiger-anim">
+                        </div>
+                    </div>
+                    <div class="rounded-2xl pt-10 pb-4 px-2 relative overflow-hidden"
+                        style=" width: 100%;background: linear-gradient(135deg, rgb(220, 166, 30), rgb(255, 217, 0), rgb(220, 166, 30)); box-shadow: rgba(218, 165, 32, 0.3) 0px 0px 30px, rgba(0, 0, 0, 0.2) 0px 0px 20px inset;">
+                        <div class="absolute top-0 left-0 w-1/3 h-full opacity-20 pointer-events-none"
+                            style="background: linear-gradient(90deg, transparent, white, transparent); transform: translateX(176.522%);">
+                        </div>
+                        <div class="flex items-stretch gap-1">
+                            <div class="flex flex-col justify-around py-1">
+                                <div class="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold"
+                                    style="background: rgb(207, 23, 23); color: white; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">
+                                    1</div>
+                                <div class="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold"
+                                    style="background: rgb(207, 23, 23); color: white; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">
+                                    2</div>
+                                <div class="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold"
+                                    style="background: rgb(207, 23, 23); color: white; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">
+                                    3</div>
+                            </div>
+                            <div class="flex-1 grid grid-cols-3 gap-1">
+                                <div id="slot1"
+                                    class="flex items-center justify-center text-3xl rounded-lg aspect-square relative"
+                                    style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 230, 210, 0.95)); box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px inset, rgba(0, 0, 0, 0.1) 0px 1px 2px;">
+                                    🏮</div>
+                                <div id="slot2"
+                                    class="flex items-center justify-center text-3xl rounded-lg aspect-square relative"
+                                    style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 230, 210, 0.95)); box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px inset, rgba(0, 0, 0, 0.1) 0px 1px 2px;">
+                                    🐅</div>
+                                <div id="slot3"
+                                    class="flex items-center justify-center text-3xl rounded-lg aspect-square relative"
+                                    style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 230, 210, 0.95)); box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px inset, rgba(0, 0, 0, 0.1) 0px 1px 2px;">
+                                    🔔</div>
+                                <div id="slot4"
+                                    class="flex items-center justify-center text-3xl rounded-lg aspect-square relative"
+                                    style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 230, 210, 0.95)); box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px inset, rgba(0, 0, 0, 0.1) 0px 1px 2px;">
+                                    🔔</div>
+                                <div id="slot5"
+                                    class="flex items-center justify-center text-3xl rounded-lg aspect-square relative"
+                                    style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 230, 210, 0.95)); box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px inset, rgba(0, 0, 0, 0.1) 0px 1px 2px;">
+                                    🔔</div>
+                                <div id="slot6"
+                                    class="flex items-center justify-center text-3xl rounded-lg aspect-square relative"
+                                    style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 230, 210, 0.95)); box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px inset, rgba(0, 0, 0, 0.1) 0px 1px 2px;">
+                                    🔔</div>
+                                <div id="slot7"
+                                    class="flex items-center justify-center text-3xl rounded-lg aspect-square relative"
+                                    style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 230, 210, 0.95)); box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px inset, rgba(0, 0, 0, 0.1) 0px 1px 2px;">
+                                    🏮</div>
+                                <div id="slot8"
+                                    class="flex items-center justify-center text-3xl rounded-lg aspect-square relative"
+                                    style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 230, 210, 0.95)); box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px inset, rgba(0, 0, 0, 0.1) 0px 1px 2px;">
+                                    🔔</div>
+                                <div id="slot9"
+                                    class="flex items-center justify-center text-3xl rounded-lg aspect-square relative"
+                                    style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 230, 210, 0.95)); box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px inset, rgba(0, 0, 0, 0.1) 0px 1px 2px;">
+                                    💰</div>
+                            </div>
+                            <div class="flex flex-col justify-around py-1">
+                                <div class="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold"
+                                    style="background: rgb(207, 23, 23); color: white; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">
+                                    5</div>
+                                <div class="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold"
+                                    style="background: rgb(207, 23, 23); color: white; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">
+                                    2</div>
+                                <div class="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold"
+                                    style="background: rgb(207, 23, 23); color: white; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;">
+                                    4</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overflow-hidden py-1.5 mt-2 rounded-lg text-xs"
+                        style="background: rgba(0, 0, 0, 0.85); border: 1px solid rgba(218, 165, 32, 0.2);">
+
+                        <div class="marquee" style="color: rgb(220, 166, 30);">
+                            🐅 Ganhe grandes prémios! 🎰 Multiplicadores até 2500x 💰 Fortune Tiger - O jogo mais
+                            popular de Angola! 🏮
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 mt-2 text-center text-[10px]">
+                        <div class="rounded-lg py-2 px-1"
+                            style="background: rgba(0, 0, 0, 0.85); border: 1px solid rgba(218, 165, 32, 0.25);">
+                            <div class="text-muted-foreground">💰 SALDO</div>
+                            <div id="saldoBox" class="font-bold text-xs" style="color: rgb(220, 166, 30);">0 Kz</div>
+                        </div>
+                        <div class="rounded-lg py-2 px-1"
+                            style="background: rgba(0, 0, 0, 0.85); border: 1px solid rgba(218, 165, 32, 0.25);">
+                            <div class="text-muted-foreground">🎲 APOSTA</div>
+                            <div class="font-bod ext-xs" style="color: rgb(220, 166, 30); font-size: 13px;">500 Kz
+                            </div>
+                        </div>
+                        <div class="rounded-lg py-2 px-1"
+                            style="background: rgba(0, 0, 0, 0.85); border: 1px solid rgba(218, 165, 32, 0.25);">
+                            <div class="text-muted-foreground">🏆 GANHO</div>
+                            <div id="ganhoBox" class="font-bold text-xs" style="color: rgb(220, 166, 30);">0 Kz</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center gap-3 mt-3"><button
+                            class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold cursor-pointer"
+                            style="background: rgba(0, 0, 0, 0.85); border: 1px solid rgba(218, 165, 32, 0.4); color: rgb(220, 166, 30);">⚡</button><button
+                            class="w-10 h-10 rounded-full flex items-center justify-center text-lg cursor-pointer"
+                            style="background: rgba(0, 0, 0, 0.85); border: 1px solid rgba(218, 165, 32, 0.4); color: rgb(220, 166, 30);">−</button><button
+                            class=" play-btn w-16 h-16 rounded-full text-sm font-extrabold cursor-pointer w-16 h-16 rounded-full text-sm font-extrabold cursor-pointer disabled:opacity-50"
+                            tabindex="0"
+                            style="background: linear-gradient(135deg, rgb(33, 196, 93), rgb(45, 134, 77)); color: white; box-shadow: rgba(34, 197, 94, 0.4) 0px 0px 20px, rgba(34, 197, 94, 0.1) 0px 0px 40px; border: 3px solid rgba(255, 255, 255, 0.2);"
+                            id="playBtn">
+                            JOGAR
+                        </button><button
+                            class="w-10 h-10 rounded-full flex items-center justify-center text-lg cursor-pointer"
+                            style="background: rgba(0, 0, 0, 0.85); border: 1px solid rgba(218, 165, 32, 0.4); color: rgb(220, 166, 30);">+</button><button
+                            class="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold cursor-pointer"
+                            style="background: rgba(0, 0, 0, 0.85); border: 1px solid rgba(218, 165, 32, 0.4); color: rgb(220, 166, 30);">AUTO</button>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- Botão SACAR AGORA já criado, mas escondido -->
+                <div class="grid grid-cols-3 gap-2 mt-2 text-center text-[10px]"></div>
+                <button id="sacarBtn" style="
+    margin-top: 5px;
+    display: none;
+    margin-left: 0.1rem;
+    padding: 12px 25px;
+    background: linear-gradient(90deg, #FFD700, #FFA500);
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255,165,0,0.4);
+">LEVANTAR 121.000 Kz</button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const nome = localStorage.getItem("nomeUsuario");
+            const el = document.getElementById("nomeUser");
+
+            // animação
+            el.style.opacity = 0;
+            el.style.transform = "translateY(20px)";
+
+            setTimeout(() => {
+                el.textContent = nome ? nome : "Usuário";
+                el.style.transition = "all 0.6s ease";
+                el.style.opacity = 1;
+                el.style.transform = "translateY(0)";
+            }, 300);
+
+            // limpar depois (opcional profissional)
+            localStorage.removeItem("nomeUsuario");
+        });
+    </script>
+
+
+    <style>
+        /* Confete */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: red;
+            top: 0;
+            animation: fall 3s linear infinite;
+            z-index: 9999;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0);
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        /* Notificação estilosa */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, gold, orange);
+            color: black;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            z-index: 9999;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+
+
+
+
+
+
+
+    <audio id="somClick" src="https://www.myinstants.com/media/sounds/beep.mp3"></audio>
+    <audio id="somCassino" src="indexpage/slotmachine.mp3"></audio>
+    <audio id="somVitoria"
+        src="https://infoescala.online/wp-content/uploads/2025/11/cashier-quotka-chingquot-sound-effect-129698.mp3"></audio>
+    <audio id="somDerrota" src="https://www.myinstants.com/media/sounds/fail.mp3"></audio>
+
+
+
+
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            let rodadaAtual = 0;
+            let derrotas = 0;
+            const maxRodadas = 10;
+            const maxDerrotas = 2;
+            const resultadosRodadas = [
+                { tipo: "ganho", valor: 8500 },   // 1
+                { tipo: "perda" },                // 2
+                { tipo: "ganho", valor: 15000 },   // 3
+                { tipo: "ganho", valor: 23000 },  // 4
+                { tipo: "perda" },                // 5
+                { tipo: "ganho", valor: 12000 },  // 6
+                { tipo: "ganho", valor: 18000 },  // 7
+                { tipo: "ganho", valor: 22000 },  // 8
+                { tipo: "perda" },                // 9
+                { tipo: "ganho", valor: 22500 }   // 10
+            ];
+            let saldoZeroAcumulado = 0;
+
+            const emojis = ["🐅", "💰", "🏮", "🔔", "🍀", "⭐"];
+            const slots = Array.from({ length: 9 }, (_, i) => document.getElementById(`slot${i + 1}`));
+            const playBtn = document.getElementById("playBtn");
+            const sacarBtn = document.getElementById("sacarBtn");
+
+            const somClick = document.getElementById("somClick");
+            const somCassino = document.getElementById("somCassino");
+            const somVitoria = document.getElementById("somVitoria");
+            const somDerrota = document.getElementById("somDerrota");
+
+            // Som nos botões menores
+            document.querySelectorAll("button").forEach(btn => {
+                if (btn.id !== "playBtn") {
+                    btn.addEventListener("click", () => {
+                        somClick.currentTime = 0;
+                        somClick.play().catch(() => { });
+                    });
+                }
+            });
+
+            function atualizarTodosSaldos() {
+                document.getElementById("saldoTopo").textContent = saldoZeroAcumulado + " Kz";
+                document.getElementById("saldoBox").textContent = saldoZeroAcumulado + " Kz";
+            }
+            function atualizarGanhos(valorAtual) {
+                document.getElementById("ganhoBox").textContent = valorAtual + " Kz";
+            }
+            function atualizarRodadas() {
+                const rodadasEl = document.querySelector("div span");
+                if (rodadasEl) rodadasEl.innerText = `${rodadaAtual}/${maxRodadas}`;
+            }
+
+            function mostrarNotificacao(texto, ganhou = true) {
+                const overlay = document.createElement("div");
+                overlay.className = "overlay";
+                document.body.appendChild(overlay);
+
+                const toast = document.createElement("div");
+                toast.className = "toast";
+                toast.style.position = "fixed";
+                toast.style.top = "50%";
+                toast.style.left = "50%";
+                toast.style.transform = "translate(-50%, -50%)";
+                toast.style.padding = "20px 30px";
+                toast.style.borderRadius = "15px";
+                toast.style.fontSize = "20px";
+                toast.style.fontWeight = "bold";
+                toast.style.background = "none";
+                toast.style.color = ganhou ? "#00ff88" : "#ff2b2b";
+                toast.style.textShadow = ganhou ? "0 0 20px #00ff88, 0 0 40px #00ff88" : "0 0 20px #ff2b2b, 0 0 40px #ff2b2b";
+                toast.style.boxShadow = ganhou ? "0 0 30px #00ff88" : "0 0 30px #ff2b2b";
+                toast.textContent = texto;
+                document.body.appendChild(toast);
+
+                if (ganhou) {
+                    for (let i = 0; i < 30; i++) {
+                        const confete = document.createElement("div");
+                        confete.className = "confetti";
+                        confete.style.background = `hsl(${Math.random() * 360},100%,50%)`;
+                        confete.style.left = Math.random() * window.innerWidth + "px";
+                        document.body.appendChild(confete);
+                        setTimeout(() => confete.remove(), 4000);
+                    }
+                }
+
+                setTimeout(() => { toast.remove(); overlay.remove(); }, 3000);
+            }
+
+            playBtn.addEventListener("click", () => {
+                if (rodadaAtual >= maxRodadas) return;
+
+                rodadaAtual++;
+                atualizarRodadas();
+                playBtn.innerHTML = "...";
+                playBtn.disabled = true;
+                somCassino.currentTime = 0;
+                somCassino.play().catch(() => { });
+
+                let velocidade = 100;
+                const interval = setInterval(() => {
+                    slots.forEach(slot => slot.textContent = emojis[Math.floor(Math.random() * emojis.length)]);
+                    velocidade += 20;
+                }, velocidade);
+
+                setTimeout(() => {
+                    clearInterval(interval);
+
+                    // Determinar vitória ou derrota
+
+                    const resultado = resultadosRodadas[rodadaAtual - 1];
+
+                    if (resultado.tipo === "ganho") {
+                        const simbolo = emojis[Math.floor(Math.random() * emojis.length)];
+                        slots.forEach(slot => slot.textContent = simbolo);
+                    } else {
+                        slots.forEach(slot => {
+                            let rand;
+                            do {
+                                rand = emojis[Math.floor(Math.random() * emojis.length)];
+                            } while (rand === slots[0].textContent);
+                            slot.textContent = rand;
+                        });
+                    }
+
+                    somCassino.pause(); somCassino.currentTime = 0;
+
+                    const linhas = [
+                        [slots[0], slots[1], slots[2]],
+                        [slots[3], slots[4], slots[5]],
+                        [slots[6], slots[7], slots[8]]
+                    ];
+
+                    let venceu = false;
+                    linhas.forEach(linha => {
+                        const first = linha[0].textContent;
+                        if (linha.every(slot => slot.textContent === first)) venceu = true;
+                    });
+
+                    if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+
+                    if (venceu) {
+
+                        somVitoria.currentTime = 0; somVitoria.play();
+
+                        saldoZeroAcumulado += resultado.valor;
+
+                        // saldo continua acumulando (normal)
+                        document.getElementById("saldoTopo").textContent = saldoZeroAcumulado + " Kz";
+                        document.getElementById("saldoBox").textContent = saldoZeroAcumulado + " Kz";
+
+                        // 👇 ganho mostra só o valor da rodada (NÃO soma)
+                        atualizarGanhos(resultado.valor);
+                        mostrarNotificacao(`🎉 Parabéns! Você ganhou +${resultado.valor} Kz 🎉`, true);
+                    } else {
+                        derrotas++;
+                        somDerrota.currentTime = 0; somDerrota.play();
+                        if (derrotas >= maxDerrotas) {
+                            mostrarNotificacao("😢 Que pena, você perdeu!", false);
+                            playBtn.disabled = true;
+                        }
+                    }
+
+                    playBtn.innerHTML = "JOGAR";
+                    playBtn.disabled = false;
+
+                    // MOSTRAR SACAR AGORA apenas na rodada 10
+                    if (rodadaAtual === maxRodadas) {
+                        sacarBtn.style.display = "block";
+                    }
+
+                }, 2000);
+            });
+
+
+            // Ação do botão sacar
+            sacarBtn.addEventListener("click", () => {
+                // Redireciona para a página desejada na mesma aba
+                window.location.href = "witdraw.html"; // <-- coloque aqui sua URL
+            });
+
+        });
+
+        // Botão SACAR AGORA
+        const sacarBtn = document.getElementById("sacarBtn");
+        sacarBtn.style.display = "none"; // escondido inicialmente
+
+        // Mostrar na rodada 10
+        if (rodadaAtual === maxRodadas) {
+            sacarBtn.style.display = "block";
+        }
+
+        // Redirecionar ao clicar
+        sacarBtn.addEventListener("click", () => {
+            window.location.href = "witdraw.html"; // alterar para a página desejada
+        });
+
+        // =========================
+        btn.addEventListener("mouseenter", () => {
+            btn.style.transform = "scale(1.05)";
+            btn.style.boxShadow = "0 0 45px rgba(255,215,0,0.9)";
+        });
+
+        btn.addEventListener("mouseleave", () => {
+            btn.style.transform = "scale(1)";
+            btn.style.boxShadow = "0 0 25px rgba(255,215,0,0.5)";
+        });
+
+        btn.addEventListener("mousedown", () => {
+            btn.style.transform = "scale(0.95)";
+        });
+
+        btn.addEventListener("mouseup", () => {
+            btn.style.transform = "scale(1.05)";
+        });
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

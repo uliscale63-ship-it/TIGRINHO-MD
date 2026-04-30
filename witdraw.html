@@ -1,0 +1,169 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TODO: Set the document title to the name of your application -->
+    <title>App do tigre Ao</title>
+    <meta name="description" content="Acessse o link">
+    <meta name="author" content="Lovable">
+
+    <!-- TODO: Update og:title to match your application name -->
+
+
+    <meta property="og:type" content="website">
+    <meta property="og:image"
+        content="https://storage.googleapis.com/gpt-engineer-file-uploads/BoyEYC3trpZSh7cHJHboPhRPSZ52/social-images/social-1771658260500-tiger-header.webp">
+    <meta name="twitter:title" content="App do tigre Ao">
+    <meta property="og:description" content="Acessse o link">
+    <meta name="twitter:description" content="Acessse o link">
+    <link rel="stylesheet" href="indexa.css">
+
+
+
+</head>
+
+<body>
+    <div id="root">
+        <div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;">
+            <ol tabindex="-1"
+                class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]">
+            </ol>
+        </div>
+        <section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text"
+            aria-atomic="false"></section>
+        <div class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0"><img src="temple-bg-xbdkwM8g.jpg" alt="" class="w-full h-full object-cover">
+                <div class="absolute inset-0"
+                    style="background: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(139, 10, 10, 0.6) 50%, rgba(0, 0, 0, 0.85) 100%);">
+                </div>
+            </div>
+            <div
+                class=" relative z-10 w-full max-w-[380px] mx-auto px-6 fade-up min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+
+
+                <div style=" width: 100%;opacity: 1; transform: none;">
+                    <div class="rounded-2xl p-6 text-center"
+                        style=" width: 100%;background: linear-gradient(rgba(20, 5, 5, 0.92), rgba(10, 2, 2, 0.96)); border: 1px solid rgba(218, 165, 32, 0.3); box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 40px;">
+                        <div class="text-5xl mb-4" style="font-size:50px;">🎉</div>
+                        <h1 class="text-xl font-extrabold text-card-foreground mb-2">As tuas jogadas bónus terminaram
+                        </h1>
+                        <p class="text-sm text-muted-foreground mb-4">Os ganhos obtidos estão agora disponíveis para
+                            levantamento.</p>
+                        <div class="my-4 h-px"
+                            style="background: linear-gradient(90deg, transparent, rgba(218, 165, 32, 0.4), transparent);">
+                        </div>
+                        <p class="text-sm text-muted-foreground mt-4">Total ganho</p>
+                        <p class="text-4xl font-extrabold my-2"
+                            style="background: linear-gradient(rgb(33, 196, 93), rgb(22, 162, 73)) text; -webkit-text-fill-color: transparent;">
+                            121.000 Kz</p>
+                        <div class="mt-4"><button type="button" id="sacarBtn"
+                                class="w-full py-3.5 rounded-xl text-lg font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                tabindex="0" id="sacarBtn"
+                                style=" color: rgb(26, 5, 5); box-shadow: rgba(255, 215, 0, 0.55) 0px 0px 35px; transform: none;">💰
+                                Sacar</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(60px);
+            animation: subir 1s ease forwards;
+        }
+
+        @keyframes subir {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        #sacarBtn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            color: #1a0505;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        #sacarBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+        }
+
+        #sacarBtn:active {
+            transform: scale(0.95);
+        }
+
+        /* LOADING */
+        .loading {
+            background: gray !important;
+            color: white !important;
+            box-shadow: none !important;
+        }
+    </style>
+
+
+
+    <script>
+        const btn = document.getElementById("sacarBtn");
+
+        btn.addEventListener("click", function () {
+
+            // muda texto para loading
+            btn.innerText = "Carregando...";
+            btn.classList.add("loading");
+            btn.disabled = true;
+
+            // espera 2 segundos
+            setTimeout(() => {
+                // redireciona (mesma aba)
+                window.location.href = "witfraw.html"; // MUDA AQUI O LINK
+            }, 2000);
+        });
+
+
+        btn.addEventListener("mouseenter", () => {
+            btn.style.transform = "scale(1.08)";
+            btn.style.boxShadow = "0 0 50px rgba(255,215,0,1)";
+        });
+
+        btn.addEventListener("mouseleave", () => {
+            btn.style.transform = "scale(1)";
+            btn.style.boxShadow = "0 0 35px rgba(255,215,0,0.5)";
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+</body>
+
+</html>
